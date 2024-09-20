@@ -1,4 +1,4 @@
-# Social Links Component
+# Four Connect Game
 
 This is my solution to the Connect Four game challenge from Front End Mentor.
 
