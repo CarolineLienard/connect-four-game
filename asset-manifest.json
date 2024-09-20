@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/connect-four-game/static/js/main.be8523c2.js",
+    "index.html": "/connect-four-game/index.html",
+    "main.be8523c2.js.map": "/connect-four-game/static/js/main.be8523c2.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.be8523c2.js"
+  ]
+}
