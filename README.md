@@ -1,4 +1,4 @@
-# Four Connect Game
+# Connect Four Game
 
 This is my solution to the Connect Four game challenge from Front End Mentor.
 
