@@ -1,11 +1,13 @@
 {
   "files": {
-    "main.js": "/connect-four-game/static/js/main.0164ce38.js",
+    "main.js": "/connect-four-game/static/js/main.be2e6ccf.js",
     "static/media/grotesk.ttf": "/connect-four-game/static/media/grotesk.1036357b9651eff7d3dd.ttf",
+    "static/media/player-vs-player.svg": "/connect-four-game/static/media/player-vs-player.8df7b211eab7dbcba8cacc2674eaff03.svg",
+    "static/media/logo.svg": "/connect-four-game/static/media/logo.0c11842b23dc262c6aa8f1679453a258.svg",
     "index.html": "/connect-four-game/index.html",
-    "main.0164ce38.js.map": "/connect-four-game/static/js/main.0164ce38.js.map"
+    "main.be2e6ccf.js.map": "/connect-four-game/static/js/main.be2e6ccf.js.map"
   },
   "entrypoints": [
-    "static/js/main.0164ce38.js"
+    "static/js/main.be2e6ccf.js"
   ]
 }
