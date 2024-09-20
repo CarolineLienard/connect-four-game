@@ -60,6 +60,8 @@ export const RegularText = styled.p`
 
 // Spacing
 export const spacing = {
+  spacing800: pxToRem(80),
+  spacing600: pxToRem(60),
   spacing500: pxToRem(40),
   spacing300: pxToRem(24),
   spacing200: pxToRem(20),

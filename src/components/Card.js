@@ -7,7 +7,7 @@ const CardContainer = styled.div`
   align-items: center;
   text-align: center;
   gap: ${spacing.spacing300};
-  padding: ${spacing.spacing500};
+  padding: ${spacing.spacing600} ${spacing.spacing500};
   width: ${pxToRem(380)};
   background: ${colors.purple700};
   border-radius: 40px;
