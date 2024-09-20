@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.js": "/connect-four-game/static/js/main.67200d3a.js",
+    "main.js": "/connect-four-game/static/js/main.0164ce38.js",
     "static/media/grotesk.ttf": "/connect-four-game/static/media/grotesk.1036357b9651eff7d3dd.ttf",
     "index.html": "/connect-four-game/index.html",
-    "main.67200d3a.js.map": "/connect-four-game/static/js/main.67200d3a.js.map"
+    "main.0164ce38.js.map": "/connect-four-game/static/js/main.0164ce38.js.map"
   },
   "entrypoints": [
-    "static/js/main.67200d3a.js"
+    "static/js/main.0164ce38.js"
   ]
 }
