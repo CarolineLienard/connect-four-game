@@ -1,4 +1,3 @@
-import React from "react";
 import { PageContainer } from "../styles/utils";
 import StandardButton from "../components/StandardButton";
 
