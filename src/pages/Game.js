@@ -1,7 +1,10 @@
-import React from 'react'
+import { PageContainer } from "../styles/utils";
+import StandardButton from "../components/StandardButton";
 
 export default function Game() {
   return (
-    <div>Game</div>
-  )
+    <PageContainer>
+      <StandardButton label="Menu" onClick={() => alert("click")} />
+    </PageContainer>
+  );
 }
