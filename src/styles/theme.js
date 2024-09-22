@@ -26,7 +26,6 @@ export const pxToRem = (pxValue) => `${pxValue / 16}rem`;
 const baseTextStyle = css`
   color: ${(props) => props.$textColor || colors.black};
   font-size: ${pxToRem(16)};
-  letter-spacing: -0.5px;
   font-weight: 700;
   line-height: ${pxToRem(21)};
 `;
