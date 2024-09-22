@@ -4,10 +4,14 @@ import { useNavigate } from "react-router-dom";
 import Card from "../components/Card";
 import GameButton from "../components/GameButton";
 import { colors, spacing } from "../styles/theme";
-import { FlexCSS } from "../styles/utils";
+import { FlexCSS, PageContainer } from "../styles/utils";
 import Icon from "../components/Icon";
 import logo from "../assets/images/logo.svg";
 import players from "../assets/images/player-vs-player.svg";
+
+const MainContainer = styled(PageContainer)`
+  background-color: ${colors.purple800};
+`;
 
 const MenuContainer = styled.div`
   ${FlexCSS}
@@ -25,19 +29,21 @@ const Buttons = styled.div`
 export default function MainMenu() {
   const navigate = useNavigate();
   return (
-    <Card>
-      <MenuContainer>
-        <Icon src={logo} alt="logo" size={52} />
-        <Buttons>
-          <GameButton
-            label="play vs player"
-            bgColor={colors.yellow}
-            icon={players}
-            onClick={() => navigate("/game")}
-          />
-          <GameButton label="game rules" onClick={() => navigate("/rules")} />
-        </Buttons>
-      </MenuContainer>
-    </Card>
+    <MainContainer>
+      <Card>
+        <MenuContainer>
+          <Icon src={logo} alt="logo" size={52} />
+          <Buttons>
+            <GameButton
+              label="play vs player"
+              bgColor={colors.yellow}
+              icon={players}
+              onClick={() => navigate("/game")}
+            />
+            <GameButton label="game rules" onClick={() => navigate("/rules")} />
+          </Buttons>
+        </MenuContainer>
+      </Card>
+    </MainContainer>
   );
 }

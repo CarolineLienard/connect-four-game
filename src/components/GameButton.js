@@ -10,7 +10,6 @@ const StyledButton = styled.button`
   justify-content: space-between;
   padding: ${spacing.spacing200};
   background-color: ${(props) => props.$bgColor || colors.white};
-  border: 3px solid ${colors.black};
   border-radius: 20px;
   cursor: pointer;
   width: 100%;

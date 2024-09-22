@@ -1,6 +1,5 @@
 import { createGlobalStyle } from "styled-components";
 import Grotesk from "../assets/fonts/grotesk.ttf";
-import { colors } from "./theme";
 
 export const GlobalStyles = createGlobalStyle`
   @font-face {
@@ -17,10 +16,6 @@ export const GlobalStyles = createGlobalStyle`
   }
   body {
     font-family: 'Grotesk', sans-serif;
-    background: ${colors.purple800};
-    min-height: 100vh;
-    display: grid;
-    place-items: center;
   }
   img, svg {
     display: block;
