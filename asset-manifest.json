@@ -1,14 +1,19 @@
 {
   "files": {
-    "main.js": "/connect-four-game/static/js/main.c7a0faec.js",
+    "main.js": "/connect-four-game/static/js/main.88d3b1a7.js",
+    "static/media/audio.mp3": "/connect-four-game/static/media/audio.71ad6b9168425103c7e5.mp3",
     "static/media/grotesk.ttf": "/connect-four-game/static/media/grotesk.1036357b9651eff7d3dd.ttf",
+    "static/media/click.mp3": "/connect-four-game/static/media/click.3953c38d3481de133dc1.mp3",
+    "static/media/hover.mp3": "/connect-four-game/static/media/hover.78e45b0d7ff0d947240c.mp3",
     "static/media/player-vs-player.svg": "/connect-four-game/static/media/player-vs-player.8df7b211eab7dbcba8cacc2674eaff03.svg",
     "static/media/logo.svg": "/connect-four-game/static/media/logo.0c11842b23dc262c6aa8f1679453a258.svg",
+    "static/media/audio.svg": "/connect-four-game/static/media/audio.f4c0f18c4e53e04e175891dd789a4ee0.svg",
+    "static/media/audio-mute.svg": "/connect-four-game/static/media/audio-mute.f742517cbf87aaf9ef4a28944ea1890b.svg",
     "index.html": "/connect-four-game/index.html",
     "static/media/icon-check.svg": "/connect-four-game/static/media/icon-check.1f940f368e2d9babec489d6f3cce8676.svg",
-    "main.c7a0faec.js.map": "/connect-four-game/static/js/main.c7a0faec.js.map"
+    "main.88d3b1a7.js.map": "/connect-four-game/static/js/main.88d3b1a7.js.map"
   },
   "entrypoints": [
-    "static/js/main.c7a0faec.js"
+    "static/js/main.88d3b1a7.js"
   ]
 }
