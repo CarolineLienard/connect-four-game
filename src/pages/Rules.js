@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import Card from "../components/Card";
@@ -11,7 +10,7 @@ import {
   RegularText,
   spacing,
 } from "../styles/theme";
-import { FlexCSS, BlackBox } from "../styles/utils";
+import { FlexCSS, BlackBox, PageContainer } from "../styles/utils";
 import { rules } from "../data/rules";
 import check from "../assets/images/icon-check.svg";
 
@@ -62,30 +61,32 @@ const IconButton = styled.button`
 export default function Rules() {
   const navigate = useNavigate();
   return (
-    <RulesCard>
-      <Card bgColor={colors.white}>
-        <HeadingL $textColor={colors.black}>RULES</HeadingL>
-        <RuleContainer>
-          <HeadingS $textColor={colors.purple700}>OBJECTIVE</HeadingS>
-          <RegularText>{rules.objective}</RegularText>
-        </RuleContainer>
-        <RuleContainer>
-          <HeadingS $textColor={colors.purple700}>HOW TO PLAY</HeadingS>
-          <RulesList>
-            {rules.rules.map((rule) => (
-              <li key={rule.id}>
-                <HeadingXS>{rule.id}</HeadingXS>
-                <RegularText>{rule.description}</RegularText>
-              </li>
-            ))}
-          </RulesList>
-        </RuleContainer>
-      </Card>
-      <CheckIcon>
-        <IconButton onClick={() => navigate("/")}>
-          <Icon src={check} size={64} />
-        </IconButton>
-      </CheckIcon>
-    </RulesCard>
+    <PageContainer>
+      <RulesCard>
+        <Card bgColor={colors.white}>
+          <HeadingL $textColor={colors.black}>RULES</HeadingL>
+          <RuleContainer>
+            <HeadingS $textColor={colors.purple700}>OBJECTIVE</HeadingS>
+            <RegularText>{rules.objective}</RegularText>
+          </RuleContainer>
+          <RuleContainer>
+            <HeadingS $textColor={colors.purple700}>HOW TO PLAY</HeadingS>
+            <RulesList>
+              {rules.rules.map((rule) => (
+                <li key={rule.id}>
+                  <HeadingXS>{rule.id}</HeadingXS>
+                  <RegularText>{rule.description}</RegularText>
+                </li>
+              ))}
+            </RulesList>
+          </RuleContainer>
+        </Card>
+        <CheckIcon>
+          <IconButton onClick={() => navigate("/")}>
+            <Icon src={check} size={64} />
+          </IconButton>
+        </CheckIcon>
+      </RulesCard>
+    </PageContainer>
   );
 }

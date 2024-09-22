@@ -1,4 +1,4 @@
-import { css } from "styled-components";
+import styled, { css } from "styled-components";
 import { colors } from "./theme";
 
 export const FlexCSS = css`
@@ -10,4 +10,11 @@ export const FlexCSS = css`
 export const BlackBox = css`
   border: 3px solid ${colors.black};
   box-shadow: 0px 10px 0px 0px ${colors.black};
+`;
+
+export const PageContainer = styled.div`
+  background-color: ${colors.purple700};
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
 `;
