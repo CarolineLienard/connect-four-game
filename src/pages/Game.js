@@ -1,10 +1,10 @@
 import { PageContainer } from "../styles/utils";
-import StandardButton from "../components/StandardButton";
+import HeaderMenu from "../components/HeaderMenu";
 
 export default function Game() {
   return (
     <PageContainer>
-      <StandardButton label="Menu" onClick={() => alert("click")} />
+      <HeaderMenu menu={() => alert("click")} restart={() => alert("click")} />
     </PageContainer>
   );
 }
