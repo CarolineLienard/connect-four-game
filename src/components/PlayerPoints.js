@@ -1,17 +1,15 @@
 import styled from "styled-components";
 import Card from "./Card";
-import { colors, spacing, HeadingS, HeadingL } from "../styles/theme";
+import { pxToRem, colors, spacing, HeadingS, HeadingL } from "../styles/theme";
 import Icon from "./Icon";
 import redPlayer from "../assets/images/player-one.svg";
 import yellowPlayer from "../assets/images/player-two.svg";
 
-const PointsContainer = styled.div`
-  position: relative;
-`;
-
 const PointCard = styled(Card)`
   padding: ${spacing.spacing500} ${spacing.spacing200} ${spacing.spacing300};
   border-radius: 20px;
+  max-width: ${pxToRem(120)};
+  position: relative;
 `;
 
 const Count = styled.div`
@@ -22,23 +20,21 @@ const Count = styled.div`
 const PointsIcon = styled.div`
   position: absolute;
   top: -1.8rem;
-  left: 40%;
+  left: 32%;
 `;
 
 export default function PlayerPoints({ player, points }) {
   const iconSrc = player === "1" ? redPlayer : yellowPlayer;
 
   return (
-    <PointsContainer>
       <PointCard bgColor={colors.white}>
         <Count>
           <HeadingS>Player {player}</HeadingS>
-          <HeadingL>{points}</HeadingL> 
+          <HeadingL>{points}</HeadingL>
         </Count>
+        <PointsIcon>
+          <Icon src={iconSrc} alt={`${player} icon`} size={60} />
+        </PointsIcon>
       </PointCard>
-      <PointsIcon>
-        <Icon src={iconSrc} alt={`${player} icon`} size={60} />
-      </PointsIcon>
-    </PointsContainer>
   );
 }
