@@ -1,9 +1,10 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useEffect } from "react";
 import styled from "styled-components";
 import musicFile from "../assets/audio/audio.mp3";
 import Icon from "./Icon";
 import play from "../assets/images/audio.svg";
 import pause from "../assets/images/audio-mute.svg";
+import { useAudio } from "../context/AudioContext";
 
 const MusicContainer = styled.div`
   background-color: transparent;
@@ -24,7 +25,7 @@ const AudioButton = styled.button`
 
 export default function AudioPlayer() {
   const audioRef = useRef(null);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const { isPlaying, setIsPlaying } = useAudio();
 
   const handlePlay = () => {
     audioRef.current.play();
@@ -35,6 +36,14 @@ export default function AudioPlayer() {
     audioRef.current.pause();
     setIsPlaying(false);
   };
+
+  useEffect(() => {
+    if (isPlaying) {
+      audioRef.current.play();
+    } else {
+      audioRef.current.pause();
+    }
+  }, [isPlaying]);
 
   return (
     <MusicContainer>
