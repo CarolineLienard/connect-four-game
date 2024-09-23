@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { colors, HeadingM, spacing } from "../styles/theme";
 import { BlackBox } from "../styles/utils";

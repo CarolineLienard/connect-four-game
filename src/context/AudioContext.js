@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useRef, useState } from "react";
+import { createContext, useContext, useRef, useState } from "react";
 import hoverSound from "../assets/audio/hover.mp3";
 import clickSound from "../assets/audio/click.mp3";
 
