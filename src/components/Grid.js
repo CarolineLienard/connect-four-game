@@ -5,6 +5,11 @@ import { BlackBox } from "../styles/utils";
 import redArrow from "../assets/images/marker-red.svg";
 import yellowArrow from "../assets/images/marker-yellow.svg";
 
+const playerColors = {
+  red: colors.red,
+  yellow: colors.yellow,
+};
+
 const GridContainer = styled.div`
   position: relative;
   display: grid;
@@ -68,24 +73,19 @@ export default function Grid({
 }) {
   const [hoveredCol, setHoveredCol] = useState(8);
 
-  const playerColors = {
-    red: colors.red,
-    yellow: colors.yellow,
-  };
-
   return (
     <GridContainer>
       {grid.map((row, rowIndex) =>
         row.map((cell, colIndex) => (
           <Cell
             key={`${rowIndex}-${colIndex}`}
-            $bgColor={cell ? playerColors[cell] : null} 
+            $bgColor={cell ? playerColors[cell] : null}
             onClick={() => handleClick(colIndex)}
-            onMouseEnter={() => setHoveredCol(colIndex)} 
-            onMouseLeave={() => setHoveredCol(8)} 
+            onMouseEnter={() => setHoveredCol(colIndex)}
+            onMouseLeave={() => setHoveredCol(8)}
             $isWinningCell={winningCells.some(
               ([winRow, winCol]) => winRow === rowIndex && winCol === colIndex
-            )} 
+            )}
           />
         ))
       )}
@@ -93,8 +93,8 @@ export default function Grid({
         {Array.from({ length: 7 }).map((_, colIndex) => (
           <ArrowImage
             key={colIndex}
-            src={currentPlayer === "red" ? redArrow : yellowArrow} 
-            $visible={hoveredCol === colIndex} 
+            src={currentPlayer === "red" ? redArrow : yellowArrow}
+            $visible={hoveredCol === colIndex}
             alt="player arrow"
           />
         ))}

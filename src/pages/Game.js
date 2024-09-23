@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { PageContainer } from "../styles/utils";
 import HeaderMenu from "../components/HeaderMenu";
 import { spacing } from "../styles/theme";
@@ -33,6 +33,11 @@ const GridContainer = styled.div`
   gap: ${spacing.spacing500};
 `;
 
+const Timer = styled.div`
+  font-size: 1.5rem;
+  color: red;
+`;
+
 export default function Game() {
   const [grid, setGrid] = useState(
     Array(6)
@@ -43,23 +48,31 @@ export default function Game() {
   const [nextPlayer, setNextPlayer] = useState("red"); // État pour le premier joueur du prochain tour
   const [winningCells, setWinningCells] = useState([]);
   const [points, setPoints] = useState({ red: 0, yellow: 0 });
+  const [timer, setTimer] = useState(15);
 
-  const checkVictory = (grid, player) => {
-    for (let row = 0; row < 6; row++) {
-      for (let col = 0; col < 7; col++) {
-        let winningCells = [];
-
-        if (
-          checkDirection(grid, row, col, player, 0, 1, winningCells) || // Horizontale
-          checkDirection(grid, row, col, player, 1, 0, winningCells) || // Verticale
-          checkDirection(grid, row, col, player, 1, 1, winningCells) || // Diagonale descendante
-          checkDirection(grid, row, col, player, 1, -1, winningCells) // Diagonale montante
-        ) {
-          return { victory: true, cells: winningCells };
+  useEffect(() => {
+    const countdown = setInterval(() => {
+      setTimer((prev) => {
+        if (prev <= 1) {
+          clearInterval(countdown);
+          handleTimeout();
+          return 15; // Reset timer
         }
-      }
-    }
-    return { victory: false };
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(countdown);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentPlayer]);
+
+  const handleTimeout = () => {
+    setCurrentPlayer(currentPlayer === "red" ? "yellow" : "red");
+    resetTimer();
+  };
+
+  const resetTimer = () => {
+    setTimer(15);
   };
 
   const checkDirection = (
@@ -87,6 +100,24 @@ export default function Game() {
       winningCells.push([currentRow, currentCol]);
     }
     return true;
+  };
+
+  const checkVictory = (grid, player) => {
+    for (let row = 0; row < 6; row++) {
+      for (let col = 0; col < 7; col++) {
+        let winningCells = [];
+
+        if (
+          checkDirection(grid, row, col, player, 0, 1, winningCells) || // Horizontale
+          checkDirection(grid, row, col, player, 1, 0, winningCells) || // Verticale
+          checkDirection(grid, row, col, player, 1, 1, winningCells) || // Diagonale descendante
+          checkDirection(grid, row, col, player, 1, -1, winningCells) // Diagonale montante
+        ) {
+          return { victory: true, cells: winningCells };
+        }
+      }
+    }
+    return { victory: false };
   };
 
   const handleClick = (colIndex) => {
@@ -127,6 +158,7 @@ export default function Game() {
           } else {
             setGrid(newGrid);
             setCurrentPlayer(currentPlayer === "red" ? "yellow" : "red");
+            resetTimer();
           }
         }
         break;
@@ -146,6 +178,7 @@ export default function Game() {
     const nextStartingPlayer = nextPlayer === "red" ? "yellow" : "red";
     setCurrentPlayer(nextStartingPlayer);
     setNextPlayer(nextStartingPlayer); // Mettre à jour pour la prochaine partie
+    resetTimer(); // Reset timer on grid reset
   };
 
   return (
@@ -155,10 +188,7 @@ export default function Game() {
           <PlayerPoints player="1" points={points.red} />
         </PointsContainer>
         <GridContainer>
-          <HeaderMenu
-            menu={() => alert("click")}
-            restart={() => resetGrid()}
-          />
+          <HeaderMenu menu={() => alert("click")} restart={() => resetGrid()} />
           <Grid
             currentPlayer={currentPlayer}
             handleClick={handleClick}
@@ -170,6 +200,7 @@ export default function Game() {
           <PlayerPoints player="2" points={points.yellow} />
         </PointsContainer>
       </GameContainer>
+      <Timer>Temps restant: {timer} secondes</Timer>
     </GamePage>
   );
 }
