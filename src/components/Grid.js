@@ -5,7 +5,7 @@ import { BlackBox } from "../styles/utils";
 import redArrow from "../assets/images/marker-red.svg";
 import yellowArrow from "../assets/images/marker-yellow.svg";
 
-const playerColors = {
+const PLAYER_COLORS = {
   red: colors.red,
   yellow: colors.yellow,
 };
@@ -79,7 +79,7 @@ export default function Grid({
         row.map((cell, colIndex) => (
           <Cell
             key={`${rowIndex}-${colIndex}`}
-            $bgColor={cell ? playerColors[cell] : null}
+            $bgColor={cell ? PLAYER_COLORS[cell] : null}
             onClick={() => handleClick(colIndex)}
             onMouseEnter={() => setHoveredCol(colIndex)}
             onMouseLeave={() => setHoveredCol(8)}
