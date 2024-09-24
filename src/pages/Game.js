@@ -5,6 +5,7 @@ import HeaderMenu from "../components/HeaderMenu";
 import { spacing } from "../styles/theme";
 import PlayerPoints from "../components/PlayerPoints";
 import Grid from "../components/Grid";
+import ShapedCard from "../components/TimerCard";
 
 const GamePage = styled(PageContainer)`
   display: flex;
@@ -33,9 +34,8 @@ const GridContainer = styled.div`
   gap: ${spacing.spacing500};
 `;
 
-const Timer = styled.div`
-  font-size: 1.5rem;
-  color: red;
+const Timer = styled(ShapedCard)`
+  margin-top: -2.5rem;
 `;
 
 export default function Game() {
@@ -63,7 +63,7 @@ export default function Game() {
     }, 1000);
 
     return () => clearInterval(countdown);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPlayer]);
 
   const handleTimeout = () => {
@@ -200,7 +200,7 @@ export default function Game() {
           <PlayerPoints player="2" points={points.yellow} />
         </PointsContainer>
       </GameContainer>
-      <Timer>Temps restant: {timer} secondes</Timer>
+      <Timer time={timer} playerTurn={currentPlayer} />
     </GamePage>
   );
 }
