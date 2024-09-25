@@ -219,7 +219,7 @@ export default function Game() {
           <PlayerPoints player="1" points={points.red} />
         </PointsContainer>
         <GridContainer>
-          <HeaderMenu menu={handleMenu} restart={() => resetGrid()} />
+          <HeaderMenu menu={handleMenu} restart={resetGrid} />
           <Grid
             currentPlayer={currentPlayer}
             handleClick={handleClick}

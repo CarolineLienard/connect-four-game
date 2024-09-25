@@ -20,14 +20,14 @@ const MenuButton = styled(GameButton)`
   justify-content: center;
 `;
 
-const InGameMenu = ({ isOpen, onClose, restart, quit }) => {
+export default function InGameMenu({ isOpen, onClose, restart, quit }) {
   if (!isOpen) return null;
   return (
     <Overlay>
       <Card>
         <HeadingL $textColor={colors.white}>Pause</HeadingL>
         <MenuButton label="Continue game" onClick={onClose} />
-        <MenuButton label="Restart" onClick={restart} />{" "}
+        <MenuButton label="Restart" onClick={restart} />
         <MenuButton
           label="Quit game"
           bgColor={colors.red}
@@ -37,6 +37,4 @@ const InGameMenu = ({ isOpen, onClose, restart, quit }) => {
       </Card>
     </Overlay>
   );
-};
-
-export default InGameMenu;
+}
