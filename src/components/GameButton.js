@@ -45,7 +45,14 @@ const IconWrapper = styled.div`
   transform: translateY(-50%);
 `;
 
-export default function Button({ label, bgColor, textColor, icon, onClick }) {
+export default function Button({
+  label,
+  bgColor,
+  textColor,
+  icon,
+  onClick,
+  ...props
+}) {
   const { playHoverSound, playClickSound } = useAudio();
   const [isClinking, setIsClinking] = useState(false);
 
@@ -69,6 +76,7 @@ export default function Button({ label, bgColor, textColor, icon, onClick }) {
       onClick={handleClick}
       onMouseEnter={handleMouseEnter}
       className={isClinking ? "clink" : ""}
+      {...props}
     >
       <Label $textColor={textColor}>{label}</Label>
       {icon && (

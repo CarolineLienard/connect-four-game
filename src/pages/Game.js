@@ -6,6 +6,7 @@ import { spacing } from "../styles/theme";
 import PlayerPoints from "../components/PlayerPoints";
 import Grid from "../components/Grid";
 import ShapedCard from "../components/TimerCard";
+import InGameMenu from "../components/InGameMenu";
 
 const GamePage = styled(PageContainer)`
   display: flex;
@@ -183,6 +184,7 @@ export default function Game() {
 
   return (
     <GamePage>
+      <InGameMenu isOpen />
       <GameContainer>
         <PointsContainer>
           <PlayerPoints player="1" points={points.red} />
