@@ -172,8 +172,8 @@ export default function Game() {
     setWinningCells([]);
     const nextStartingPlayer = nextPlayer === "red" ? "yellow" : "red";
     setCurrentPlayer(nextStartingPlayer);
-    setNextPlayer(nextStartingPlayer); 
-    resetTimer(); 
+    setNextPlayer(nextStartingPlayer);
+    resetTimer();
   };
 
   const handleMenu = () => {
@@ -186,8 +186,11 @@ export default function Game() {
     setIsPaused(false);
   };
 
-  const handleRefresh = () => {
-    window.location.reload();
+  const handleReset = () => {
+    setPoints({ red: 0, yellow: 0 });
+    setIsOpen(false);
+    setIsPaused(false);
+    resetGrid();
   };
 
   useEffect(() => {
@@ -208,7 +211,7 @@ export default function Game() {
       <InGameMenu
         isOpen={isOpen}
         onClose={handleClose}
-        restart={handleRefresh}
+        restart={handleReset}
         quit={() => navigate("/")}
       />
       <GameContainer>
@@ -216,7 +219,7 @@ export default function Game() {
           <PlayerPoints player="1" points={points.red} />
         </PointsContainer>
         <GridContainer>
-          <HeaderMenu menu={() => handleMenu()} restart={() => resetGrid()} />
+          <HeaderMenu menu={handleMenu} restart={() => resetGrid()} />
           <Grid
             currentPlayer={currentPlayer}
             handleClick={handleClick}
