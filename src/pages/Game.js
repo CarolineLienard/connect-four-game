@@ -42,13 +42,19 @@ const Timer = styled(ShapedCard)`
   z-index: 10;
 `;
 
+const getWinnerBackgroundColor = (hasWon, currentPlayer) => {
+  if (hasWon) {
+    if (currentPlayer === "red") {
+      return colors.red;
+    } else if (currentPlayer === "yellow") {
+      return colors.yellow;
+    }
+  }
+  return colors.purple800;
+};
+
 const WinContainer = styled.div`
-  background-color: ${(props) =>
-    props.$hasWon && props.$currentPlayer === "red"
-      ? colors.red
-      : props.$hasWon && props.$currentPlayer === "yellow"
-      ? colors.yellow
-      : colors.purple800};
+  background-color: ${(props) => getWinnerBackgroundColor(props.$hasWon, props.$currentPlayer)};
   position: fixed;
   width: 100%;
   min-height: 50%;
