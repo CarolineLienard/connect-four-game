@@ -3,12 +3,13 @@ import cardRed from "../assets/images/timer-red.svg";
 import cardYellow from "../assets/images/timer-yellow.svg";
 import { FlexCSS } from "../styles/utils";
 import { HeadingXS, HeadingL, colors, pxToRem, spacing } from "../styles/theme";
+import { getPlayerColor } from "../utils/helper";
 
 const ShapedCard = styled.div`
   width: ${pxToRem(197)};
   height: ${pxToRem(165)};
   background-image: ${(props) =>
-    props.$player === "red" ? `url(${cardRed})` : `url(${cardYellow})`};
+    getPlayerColor(props.$player) ? `url(${cardRed})` : `url(${cardYellow})`};
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -28,12 +29,12 @@ export default function TimerCard({ time, playerTurn, ...props }) {
     <ShapedCard $player={playerTurn} {...props}>
       <Content>
         <HeadingXS
-          $textColor={playerTurn === "red" ? colors.white : colors.black}
+          $textColor={getPlayerColor(playerTurn) ? colors.white : colors.black}
         >
           {playerTurn.toUpperCase()}'S TURN
         </HeadingXS>
         <HeadingL
-          $textColor={playerTurn === "red" ? colors.white : colors.black}
+          $textColor={getPlayerColor(playerTurn) ? colors.white : colors.black}
         >
           {time}s
         </HeadingL>
