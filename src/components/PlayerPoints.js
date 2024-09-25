@@ -10,6 +10,7 @@ const PointCard = styled(Card)`
   border-radius: 20px;
   max-width: ${pxToRem(120)};
   position: relative;
+  z-index: 10;
 `;
 
 const Count = styled.div`

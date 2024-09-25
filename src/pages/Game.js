@@ -3,11 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { PageContainer } from "../styles/utils";
 import HeaderMenu from "../components/HeaderMenu";
-import { spacing } from "../styles/theme";
+import { colors, spacing } from "../styles/theme";
 import PlayerPoints from "../components/PlayerPoints";
 import Grid from "../components/Grid";
 import ShapedCard from "../components/TimerCard";
 import InGameMenu from "../components/InGameMenu";
+import WinCard from "../components/WinCard";
 
 const GamePage = styled(PageContainer)`
   display: flex;
@@ -38,6 +39,21 @@ const GridContainer = styled.div`
 
 const Timer = styled(ShapedCard)`
   margin-top: -2.5rem;
+  z-index: 10;
+`;
+
+const WinContainer = styled.div`
+  background-color: ${(props) =>
+    props.$hasWon && props.$currentPlayer === "red"
+      ? colors.red
+      : props.$hasWon && props.$currentPlayer === "yellow"
+      ? colors.yellow
+      : colors.purple800};
+  position: fixed;
+  width: 100%;
+  min-height: 50%;
+  bottom: 0;
+  border-radius: 60px 60px 0 0;
 `;
 
 export default function Game() {
@@ -54,22 +70,25 @@ export default function Game() {
   const [timer, setTimer] = useState(15);
   const [isOpen, setIsOpen] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
+  const [hasWon, setHasWon] = useState(false);
 
   useEffect(() => {
-    const countdown = setInterval(() => {
-      setTimer((prev) => {
-        if (prev <= 1) {
-          clearInterval(countdown);
-          handleTimeout();
-          return 15; // Reset timer
-        }
-        return prev - 1;
-      });
-    }, 1000);
+    if (!hasWon) {
+      const countdown = setInterval(() => {
+        setTimer((prev) => {
+          if (prev <= 1) {
+            clearInterval(countdown);
+            handleTimeout();
+            return 15;
+          }
+          return prev - 1;
+        });
+      }, 1000);
 
-    return () => clearInterval(countdown);
+      return () => clearInterval(countdown);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentPlayer]);
+  }, [currentPlayer, hasWon]);
 
   const handleTimeout = () => {
     setCurrentPlayer(currentPlayer === "red" ? "yellow" : "red");
@@ -137,11 +156,8 @@ export default function Game() {
             ...prevPoints,
             [currentPlayer]: prevPoints[currentPlayer] + 1,
           }));
+          setHasWon(true);
           setGrid(newGrid);
-          setTimeout(() => {
-            alert(`${currentPlayer} a gagné !`);
-            resetGrid();
-          }, 600);
         } else {
           const isGridFull = newGrid.every((row) =>
             row.every((cell) => cell !== null)
@@ -170,6 +186,7 @@ export default function Game() {
         .map(() => Array(7).fill(null))
     );
     setWinningCells([]);
+    setHasWon(false);
     const nextStartingPlayer = nextPlayer === "red" ? "yellow" : "red";
     setCurrentPlayer(nextStartingPlayer);
     setNextPlayer(nextStartingPlayer);
@@ -195,16 +212,15 @@ export default function Game() {
 
   useEffect(() => {
     let interval = null;
-
-    if (!isPaused && timer > 0) {
+    if (!isPaused && !hasWon && timer > 0) {
       interval = setInterval(() => {
         setTimer((prevTimer) => prevTimer - 1);
       }, 1000);
-    } else if (timer === 0) {
+    } else if (timer === 0 || hasWon) {
       clearInterval(interval);
     }
     return () => clearInterval(interval);
-  }, [isPaused, timer]);
+  }, [isPaused, timer, hasWon]);
 
   return (
     <GamePage>
@@ -231,7 +247,12 @@ export default function Game() {
           <PlayerPoints player="2" points={points.yellow} />
         </PointsContainer>
       </GameContainer>
-      <Timer time={timer} playerTurn={currentPlayer} />
+      {hasWon ? (
+        <WinCard onClick={resetGrid} playerWin={currentPlayer} />
+      ) : (
+        <Timer time={timer} playerTurn={currentPlayer} />
+      )}
+      <WinContainer $currentPlayer={currentPlayer} $hasWon={hasWon} />
     </GamePage>
   );
 }

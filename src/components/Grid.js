@@ -23,6 +23,7 @@ const GridContainer = styled.div`
   padding: ${spacing.spacing200} ${spacing.spacing200} ${spacing.spacing600};
   border-radius: 40px;
   ${BlackBox}
+  z-index: 10;
 `;
 
 const Cell = styled.div`
