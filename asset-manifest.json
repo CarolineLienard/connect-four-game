@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.js": "/connect-four-game/static/js/main.f76c6493.js",
+    "main.js": "/connect-four-game/static/js/main.621fa63b.js",
     "static/media/audio.mp3": "/connect-four-game/static/media/audio.71ad6b9168425103c7e5.mp3",
     "static/media/grotesk.ttf": "/connect-four-game/static/media/grotesk.1036357b9651eff7d3dd.ttf",
     "static/media/click.mp3": "/connect-four-game/static/media/click.3953c38d3481de133dc1.mp3",
     "static/media/hover.mp3": "/connect-four-game/static/media/hover.78e45b0d7ff0d947240c.mp3",
     "static/media/player-vs-player.svg": "/connect-four-game/static/media/player-vs-player.8df7b211eab7dbcba8cacc2674eaff03.svg",
     "static/media/logo.svg": "/connect-four-game/static/media/logo.0c11842b23dc262c6aa8f1679453a258.svg",
-    "static/media/timer-red.svg": "/connect-four-game/static/media/timer-red.5d78e02bf77971934fb579a751b8912d.svg",
-    "static/media/timer-yellow.svg": "/connect-four-game/static/media/timer-yellow.b31be1f284910e52edda7397c49852bb.svg",
+    "static/media/timer-red.svg": "/connect-four-game/static/media/timer-red.b63c0f624fa1593aa51cbb9411b4fdb0.svg",
+    "static/media/timer-yellow.svg": "/connect-four-game/static/media/timer-yellow.9f9d86705afd83c257fedd50c6787d88.svg",
     "static/media/marker-yellow.svg": "/connect-four-game/static/media/marker-yellow.ea939406eb5bb3a5b3e28c03887cad42.svg",
     "static/media/marker-red.svg": "/connect-four-game/static/media/marker-red.7f99857daf58276650d58da073dd0aad.svg",
     "static/media/audio.svg": "/connect-four-game/static/media/audio.f4c0f18c4e53e04e175891dd789a4ee0.svg",
@@ -17,9 +17,9 @@
     "static/media/audio-mute.svg": "/connect-four-game/static/media/audio-mute.f742517cbf87aaf9ef4a28944ea1890b.svg",
     "index.html": "/connect-four-game/index.html",
     "static/media/icon-check.svg": "/connect-four-game/static/media/icon-check.1f940f368e2d9babec489d6f3cce8676.svg",
-    "main.f76c6493.js.map": "/connect-four-game/static/js/main.f76c6493.js.map"
+    "main.621fa63b.js.map": "/connect-four-game/static/js/main.621fa63b.js.map"
   },
   "entrypoints": [
-    "static/js/main.f76c6493.js"
+    "static/js/main.621fa63b.js"
   ]
 }
