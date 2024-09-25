@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { PageContainer } from "../styles/utils";
 import HeaderMenu from "../components/HeaderMenu";
@@ -40,16 +41,19 @@ const Timer = styled(ShapedCard)`
 `;
 
 export default function Game() {
+  const navigate = useNavigate();
   const [grid, setGrid] = useState(
     Array(6)
       .fill(null)
       .map(() => Array(7).fill(null))
   );
   const [currentPlayer, setCurrentPlayer] = useState("red");
-  const [nextPlayer, setNextPlayer] = useState("red"); // État pour le premier joueur du prochain tour
+  const [nextPlayer, setNextPlayer] = useState("red");
   const [winningCells, setWinningCells] = useState([]);
   const [points, setPoints] = useState({ red: 0, yellow: 0 });
   const [timer, setTimer] = useState(15);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
     const countdown = setInterval(() => {
@@ -85,7 +89,7 @@ export default function Game() {
     colDir,
     winningCells
   ) => {
-    winningCells.length = 0; // Réinitialise les cellules gagnantes pour chaque direction
+    winningCells.length = 0;
     for (let i = 0; i < 4; i++) {
       const currentRow = row + i * rowDir;
       const currentCol = col + i * colDir;
@@ -107,7 +111,6 @@ export default function Game() {
     for (let row = 0; row < 6; row++) {
       for (let col = 0; col < 7; col++) {
         let winningCells = [];
-
         if (
           checkDirection(grid, row, col, player, 0, 1, winningCells) || // Horizontale
           checkDirection(grid, row, col, player, 1, 0, winningCells) || // Verticale
@@ -122,25 +125,18 @@ export default function Game() {
   };
 
   const handleClick = (colIndex) => {
-    // Empêcher les clics après une victoire
     if (winningCells.length > 0) return;
-
     const newGrid = [...grid];
     for (let rowIndex = 5; rowIndex >= 0; rowIndex--) {
       if (!newGrid[rowIndex][colIndex]) {
         newGrid[rowIndex][colIndex] = currentPlayer;
-
         const { victory, cells } = checkVictory(newGrid, currentPlayer);
-
         if (victory) {
           setWinningCells(cells);
-
-          // Mise à jour des points
           setPoints((prevPoints) => ({
             ...prevPoints,
             [currentPlayer]: prevPoints[currentPlayer] + 1,
           }));
-
           setGrid(newGrid);
           setTimeout(() => {
             alert(`${currentPlayer} a gagné !`);
@@ -174,23 +170,53 @@ export default function Game() {
         .map(() => Array(7).fill(null))
     );
     setWinningCells([]);
-
-    // Alterner le joueur qui commence après chaque partie
     const nextStartingPlayer = nextPlayer === "red" ? "yellow" : "red";
     setCurrentPlayer(nextStartingPlayer);
-    setNextPlayer(nextStartingPlayer); // Mettre à jour pour la prochaine partie
-    resetTimer(); // Reset timer on grid reset
+    setNextPlayer(nextStartingPlayer); 
+    resetTimer(); 
   };
+
+  const handleMenu = () => {
+    setIsOpen(true);
+    setIsPaused(true);
+  };
+
+  const handleClose = () => {
+    setIsOpen(false);
+    setIsPaused(false);
+  };
+
+  const handleRefresh = () => {
+    window.location.reload();
+  };
+
+  useEffect(() => {
+    let interval = null;
+
+    if (!isPaused && timer > 0) {
+      interval = setInterval(() => {
+        setTimer((prevTimer) => prevTimer - 1);
+      }, 1000);
+    } else if (timer === 0) {
+      clearInterval(interval);
+    }
+    return () => clearInterval(interval);
+  }, [isPaused, timer]);
 
   return (
     <GamePage>
-      <InGameMenu isOpen />
+      <InGameMenu
+        isOpen={isOpen}
+        onClose={handleClose}
+        restart={handleRefresh}
+        quit={() => navigate("/")}
+      />
       <GameContainer>
         <PointsContainer>
           <PlayerPoints player="1" points={points.red} />
         </PointsContainer>
         <GridContainer>
-          <HeaderMenu menu={() => alert("click")} restart={() => resetGrid()} />
+          <HeaderMenu menu={() => handleMenu()} restart={() => resetGrid()} />
           <Grid
             currentPlayer={currentPlayer}
             handleClick={handleClick}
