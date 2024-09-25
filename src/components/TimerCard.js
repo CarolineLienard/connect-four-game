@@ -25,19 +25,17 @@ const Content = styled.div`
 `;
 
 export default function TimerCard({ time, playerTurn, ...props }) {
+  const handleTextColor = getPlayerColor(playerTurn)
+    ? colors.white
+    : colors.black;
+
   return (
     <ShapedCard $player={playerTurn} {...props}>
       <Content>
-        <HeadingXS
-          $textColor={getPlayerColor(playerTurn) ? colors.white : colors.black}
-        >
+        <HeadingXS $textColor={handleTextColor}>
           {playerTurn.toUpperCase()}'S TURN
         </HeadingXS>
-        <HeadingL
-          $textColor={getPlayerColor(playerTurn) ? colors.white : colors.black}
-        >
-          {time}s
-        </HeadingL>
+        <HeadingL $textColor={handleTextColor}>{time}s</HeadingL>
       </Content>
     </ShapedCard>
   );
