@@ -67,7 +67,7 @@ export default function Button({
     setTimeout(() => {
       setIsClinking(false);
       onClick();
-    }, 1300);
+    }, 800);
   };
 
   return (
